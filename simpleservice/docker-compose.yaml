@@ -1,0 +1,46 @@
+version: "2"
+
+services:
+
+  web:
+    image: nginx
+    volumes:
+     - ./$NGINX_TEMPLATE:/etc/nginx/conf.d/mysite.template
+    ports:
+     - 8080:80
+    environment:
+     - NGINX_HOST=localhost
+     - NGINX_PORT=80
+    networks:
+     - frontend
+    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/mysite.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
+  fortune:
+    image: docker:5000/fortune-service:latest
+    depends_on:
+      - mysqldb
+    ports:
+      - 5005:5005
+    networks:
+      - frontend
+      - db
+    environment:
+      - DEBUG=$DEBUG
+
+  mysqldb:
+    image: mysql
+    environment:
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user_pass
+      - MYSQL_ROOT_PASSWORD=root_pass
+      - MYSQL_DATABASE=fortune
+    volumes:
+      - ../volumes/fortune:/var/lib/mysql
+    networks:
+      - db
+
+networks:
+  db:
+    driver: bridge
+  frontend:
+    driver: bridge
