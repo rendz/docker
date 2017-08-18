@@ -8,5 +8,5 @@ server {
 }
 
 upstream appcluster {
-    server simpleservice_fortune_1:8080;
+    server ${CONTAINER_PREFIX}_fortune_1:8080;
 }

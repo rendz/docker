@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+
+  fortune:
+    ports:
+      - 5005
+    environment:
+      - DEBUG=$DEBUG

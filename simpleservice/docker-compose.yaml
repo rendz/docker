@@ -4,6 +4,8 @@ services:
 
   web:
     image: nginx
+    depends_on:
+     - fortune
     volumes:
      - ./$NGINX_TEMPLATE:/etc/nginx/conf.d/mysite.template
     ports:
@@ -11,6 +13,7 @@ services:
     environment:
      - NGINX_HOST=localhost
      - NGINX_PORT=80
+     - CONTAINER_PREFIX=$CONTAINER_PREFIX
     networks:
      - frontend
     command: /bin/bash -c "envsubst < /etc/nginx/conf.d/mysite.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
@@ -19,13 +22,9 @@ services:
     image: docker:5000/fortune-service:latest
     depends_on:
       - mysqldb
-    ports:
-      - 5005:5005
     networks:
       - frontend
       - db
-    environment:
-      - DEBUG=$DEBUG
 
   mysqldb:
     image: mysql

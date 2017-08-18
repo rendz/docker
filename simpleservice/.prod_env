@@ -1,2 +1,2 @@
-DEBUG=
+DEBUG=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
 NGINX_TEMPLATE=fortune_nginx.template
