@@ -1,5 +1,3 @@
-CONTAINER_PREFIX=simpleservice
-
 while [[ $# -gt 1 ]]
 do
 key="$1"

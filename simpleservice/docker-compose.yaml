@@ -8,8 +8,6 @@ services:
      - fortune
     volumes:
      - ./$NGINX_TEMPLATE:/etc/nginx/conf.d/mysite.template
-    ports:
-     - 8080:80
     environment:
      - NGINX_HOST=localhost
      - NGINX_PORT=80
@@ -34,7 +32,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root_pass
       - MYSQL_DATABASE=fortune
     volumes:
-      - ../volumes/fortune:/var/lib/mysql
+      - ../volumes/"$CONTAINER_PREFIX"_fortune:/var/lib/mysql
     networks:
       - db
 
