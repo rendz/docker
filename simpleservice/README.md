@@ -20,8 +20,7 @@ logoff
 <code>ifconfig</code>
 
 Find Docker's host IP
-<pre>
-docker0   Link encap:Ethernet  HWaddr 02:42:86:71:c8:ed  
+<pre>docker0   Link encap:Ethernet  HWaddr 02:42:86:71:c8:ed  
           inet addr:<b>172.17.0.1</b>  Bcast:0.0.0.0  Mask:255.255.0.0
           inet6 addr: fe80::42:86ff:fe71:c8ed/64 Scope:Link
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
@@ -46,18 +45,18 @@ Restart Docker
 
 <code>sudo systemctl restart docker</code>
 
-##Install Docker registry
-###Run
+## Install Docker registry
+### Run
 
 <code>docker run -d -p 5000:5000 --name registry registry:2</code>
 
-###Documentation
+### Documentation
 https://docs.docker.com/registry/
 
-##Checkout project
+## Checkout project
 <code>git clone https://github.com/rendz/docker.git</code>
 
-##Build project
+## Build project
 
 <img src="doc/simple_service_build.png"/>
 
@@ -71,23 +70,25 @@ https://docs.docker.com/registry/
 <pre>REPOSITORY                            TAG                 IMAGE ID            CREATED             SIZE
 docker:5000/fortune-service           latest              7bebedccf5de        46 hours ago        130MB</pre>
 
-##Run project
+## Run project
+
+<code>./debug</code>
 
 <img src="doc/simple_service_exec.png"/>
 
-###Debug
+### Debug
 
 Starts one instance of the Java service accessible on port 8080 with debug port open - 5005
 
-###Run in "production" like mode
+### Run in "production" like mode
 
 Starts 2 instances of the Java service accessible on port 80
 
-##Fortune Service API
+## Fortune Service API
 
 Get latest fortune
 
-<code>curl localhost:80/fortune/latest</code>
+<code>curl localhost:8080/fortune/latest</code>
 
 Insert new fortune
 
