@@ -65,7 +65,8 @@
                 <version>1.3.4</version>
                 <executions>
                     <execution>
-                        <id>default</id>
+                        <id>build</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>build</goal>
                             <goal>push</goal>
@@ -80,5 +81,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
